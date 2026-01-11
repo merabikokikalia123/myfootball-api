@@ -8,6 +8,21 @@ If you deploy **without Postgres** on Render Free, your app will use **SQLite in
 That means data can be lost on redeploy/restart (Render’s free instances don’t guarantee persistent disk).
 Your app seeds demo data on startup, so it will still work, but treat it as **demo mode**.
 
+## How to make data persistent
+
+You need one of these:
+
+1. **Persistent disk/volume** attached to the running service
+
+- On Render this is the **Disk** feature (typically not available on the free plan).
+- If you have a disk, mount it (example mount path: `/var/data`) and set:
+  - `ConnectionStrings__SqliteConnection` = `Data Source=/var/data/webapplication6.db`
+
+2. **External database** (managed DB)
+
+- This is the normal production approach.
+- If you truly want “no Postgres”, you’d need to switch the backend to a different DB provider (bigger code change).
+
 ## Render steps (Docker)
 
 1. Go to Render Dashboard → **New** → **Web Service**.
