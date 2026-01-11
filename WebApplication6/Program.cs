@@ -152,18 +152,11 @@ app.UseAuthorization();
 // ✅ Map controllers
 app.MapControllers();
 
-// ✅ Ensure DB exists (SQLite) / apply migrations (SqlServer)
+// ✅ Apply migrations
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    if (string.Equals(dbProvider, "SqlServer", StringComparison.OrdinalIgnoreCase))
-    {
-        db.Database.Migrate();
-    }
-    else
-    {
-        db.Database.EnsureCreated();
-    }
+    db.Database.Migrate();
 }
 
 using (var scope = app.Services.CreateScope())

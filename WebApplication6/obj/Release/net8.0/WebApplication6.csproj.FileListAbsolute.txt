@@ -170,3 +170,4 @@ C:\Users\akaki\OneDrive\Desktop\meras aplikacia4\WebApplication6\WebApplication6
 C:\Users\akaki\OneDrive\Desktop\meras aplikacia4\WebApplication6\WebApplication6\obj\Release\net8.0\WebApplication6.pdb
 C:\Users\akaki\OneDrive\Desktop\meras aplikacia4\WebApplication6\WebApplication6\obj\Release\net8.0\WebApplication6.genruntimeconfig.cache
 C:\Users\akaki\OneDrive\Desktop\meras aplikacia4\WebApplication6\WebApplication6\obj\Release\net8.0\ref\WebApplication6.dll
+C:\Users\akaki\OneDrive\Desktop\meras aplikacia4\WebApplication6\WebApplication6\obj\Release\net8.0\WebApplication6.sourcelink.json
