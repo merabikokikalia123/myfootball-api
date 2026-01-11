@@ -152,11 +152,21 @@ app.UseAuthorization();
 // ✅ Map controllers
 app.MapControllers();
 
-// ✅ Apply migrations
+// ✅ Initialize DB
+// NOTE: The existing EF migrations in this repo were generated for SQL Server and include SQL Server-specific
+// column types like nvarchar(max). Applying them to SQLite will fail ("near 'max': syntax error").
+// For SQLite, create the schema directly.
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    db.Database.Migrate();
+    if (string.Equals(dbProvider, "SqlServer", StringComparison.OrdinalIgnoreCase))
+    {
+        db.Database.Migrate();
+    }
+    else
+    {
+        db.Database.EnsureCreated();
+    }
 }
 
 using (var scope = app.Services.CreateScope())
