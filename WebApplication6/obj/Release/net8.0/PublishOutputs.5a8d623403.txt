@@ -33,6 +33,8 @@ C:\Users\akaki\OneDrive\Desktop\meras aplikacia4\WebApplication6\WebApplication6
 C:\Users\akaki\OneDrive\Desktop\meras aplikacia4\WebApplication6\WebApplication6\bin\Release\net8.0\publish\Microsoft.OpenApi.dll
 C:\Users\akaki\OneDrive\Desktop\meras aplikacia4\WebApplication6\WebApplication6\bin\Release\net8.0\publish\Microsoft.SqlServer.Server.dll
 C:\Users\akaki\OneDrive\Desktop\meras aplikacia4\WebApplication6\WebApplication6\bin\Release\net8.0\publish\Microsoft.Win32.SystemEvents.dll
+C:\Users\akaki\OneDrive\Desktop\meras aplikacia4\WebApplication6\WebApplication6\bin\Release\net8.0\publish\Npgsql.dll
+C:\Users\akaki\OneDrive\Desktop\meras aplikacia4\WebApplication6\WebApplication6\bin\Release\net8.0\publish\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 C:\Users\akaki\OneDrive\Desktop\meras aplikacia4\WebApplication6\WebApplication6\bin\Release\net8.0\publish\SQLitePCLRaw.batteries_v2.dll
 C:\Users\akaki\OneDrive\Desktop\meras aplikacia4\WebApplication6\WebApplication6\bin\Release\net8.0\publish\SQLitePCLRaw.core.dll
 C:\Users\akaki\OneDrive\Desktop\meras aplikacia4\WebApplication6\WebApplication6\bin\Release\net8.0\publish\SQLitePCLRaw.provider.e_sqlite3.dll

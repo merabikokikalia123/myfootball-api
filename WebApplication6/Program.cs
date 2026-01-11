@@ -20,12 +20,22 @@ if (!string.IsNullOrWhiteSpace(port))
 var dbProvider = builder.Configuration["Database:Provider"] ?? "Sqlite";
 var sqlServerConn = builder.Configuration.GetConnectionString("DefaultConnection");
 var sqliteConn = builder.Configuration.GetConnectionString("SqliteConnection") ?? "Data Source=webapplication6-dev.db";
+var postgresConn = builder.Configuration.GetConnectionString("PostgresConnection");
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     if (string.Equals(dbProvider, "SqlServer", StringComparison.OrdinalIgnoreCase))
     {
         options.UseSqlServer(sqlServerConn);
+    }
+    else if (string.Equals(dbProvider, "Postgres", StringComparison.OrdinalIgnoreCase) ||
+             string.Equals(dbProvider, "PostgreSql", StringComparison.OrdinalIgnoreCase) ||
+             string.Equals(dbProvider, "PostgreSQL", StringComparison.OrdinalIgnoreCase))
+    {
+        if (string.IsNullOrWhiteSpace(postgresConn))
+            throw new InvalidOperationException("Missing configuration: ConnectionStrings:PostgresConnection");
+
+        options.UseNpgsql(postgresConn);
     }
     else
     {
