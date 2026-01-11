@@ -1,0 +1,325 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Merab Kikalia\\Desktop\\WebApplication6\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BE885E7A-14CF-4177-BD2B-DEC094ADF5BA}|WebApplication6\\WebApplication6.csproj|c:\\users\\merab kikalia\\desktop\\webapplication6\\webapplication6\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE885E7A-14CF-4177-BD2B-DEC094ADF5BA}|WebApplication6\\WebApplication6.csproj|solutionrelative:webapplication6\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE885E7A-14CF-4177-BD2B-DEC094ADF5BA}|WebApplication6\\WebApplication6.csproj|c:\\users\\merab kikalia\\desktop\\webapplication6\\webapplication6\\helpers\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE885E7A-14CF-4177-BD2B-DEC094ADF5BA}|WebApplication6\\WebApplication6.csproj|solutionrelative:webapplication6\\helpers\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE885E7A-14CF-4177-BD2B-DEC094ADF5BA}|WebApplication6\\WebApplication6.csproj|c:\\users\\merab kikalia\\desktop\\webapplication6\\webapplication6\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE885E7A-14CF-4177-BD2B-DEC094ADF5BA}|WebApplication6\\WebApplication6.csproj|solutionrelative:webapplication6\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE885E7A-14CF-4177-BD2B-DEC094ADF5BA}|WebApplication6\\WebApplication6.csproj|c:\\users\\merab kikalia\\desktop\\webapplication6\\webapplication6\\requestdto\\userregisterrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE885E7A-14CF-4177-BD2B-DEC094ADF5BA}|WebApplication6\\WebApplication6.csproj|solutionrelative:webapplication6\\requestdto\\userregisterrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE885E7A-14CF-4177-BD2B-DEC094ADF5BA}|WebApplication6\\WebApplication6.csproj|c:\\users\\merab kikalia\\desktop\\webapplication6\\webapplication6\\controllers\\playerprofilescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE885E7A-14CF-4177-BD2B-DEC094ADF5BA}|WebApplication6\\WebApplication6.csproj|solutionrelative:webapplication6\\controllers\\playerprofilescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE885E7A-14CF-4177-BD2B-DEC094ADF5BA}|WebApplication6\\WebApplication6.csproj|c:\\users\\merab kikalia\\desktop\\webapplication6\\webapplication6\\requestdto\\resetpasswordrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE885E7A-14CF-4177-BD2B-DEC094ADF5BA}|WebApplication6\\WebApplication6.csproj|solutionrelative:webapplication6\\requestdto\\resetpasswordrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE885E7A-14CF-4177-BD2B-DEC094ADF5BA}|WebApplication6\\WebApplication6.csproj|c:\\users\\merab kikalia\\desktop\\webapplication6\\webapplication6\\interfaces\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE885E7A-14CF-4177-BD2B-DEC094ADF5BA}|WebApplication6\\WebApplication6.csproj|solutionrelative:webapplication6\\interfaces\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE885E7A-14CF-4177-BD2B-DEC094ADF5BA}|WebApplication6\\WebApplication6.csproj|c:\\users\\merab kikalia\\desktop\\webapplication6\\webapplication6\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE885E7A-14CF-4177-BD2B-DEC094ADF5BA}|WebApplication6\\WebApplication6.csproj|solutionrelative:webapplication6\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE885E7A-14CF-4177-BD2B-DEC094ADF5BA}|WebApplication6\\WebApplication6.csproj|c:\\users\\merab kikalia\\desktop\\webapplication6\\webapplication6\\models\\playerprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE885E7A-14CF-4177-BD2B-DEC094ADF5BA}|WebApplication6\\WebApplication6.csproj|solutionrelative:webapplication6\\models\\playerprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE885E7A-14CF-4177-BD2B-DEC094ADF5BA}|WebApplication6\\WebApplication6.csproj|c:\\users\\merab kikalia\\desktop\\webapplication6\\webapplication6\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{BE885E7A-14CF-4177-BD2B-DEC094ADF5BA}|WebApplication6\\WebApplication6.csproj|solutionrelative:webapplication6\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE885E7A-14CF-4177-BD2B-DEC094ADF5BA}|WebApplication6\\WebApplication6.csproj|c:\\users\\merab kikalia\\desktop\\webapplication6\\webapplication6\\controllers\\newscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE885E7A-14CF-4177-BD2B-DEC094ADF5BA}|WebApplication6\\WebApplication6.csproj|solutionrelative:webapplication6\\controllers\\newscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE885E7A-14CF-4177-BD2B-DEC094ADF5BA}|WebApplication6\\WebApplication6.csproj|c:\\users\\merab kikalia\\desktop\\webapplication6\\webapplication6\\models\\news.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE885E7A-14CF-4177-BD2B-DEC094ADF5BA}|WebApplication6\\WebApplication6.csproj|solutionrelative:webapplication6\\models\\news.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE885E7A-14CF-4177-BD2B-DEC094ADF5BA}|WebApplication6\\WebApplication6.csproj|c:\\users\\merab kikalia\\desktop\\webapplication6\\webapplication6\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE885E7A-14CF-4177-BD2B-DEC094ADF5BA}|WebApplication6\\WebApplication6.csproj|solutionrelative:webapplication6\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE885E7A-14CF-4177-BD2B-DEC094ADF5BA}|WebApplication6\\WebApplication6.csproj|c:\\users\\merab kikalia\\desktop\\webapplication6\\webapplication6\\webapplication6.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{BE885E7A-14CF-4177-BD2B-DEC094ADF5BA}|WebApplication6\\WebApplication6.csproj|solutionrelative:webapplication6\\webapplication6.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE885E7A-14CF-4177-BD2B-DEC094ADF5BA}|WebApplication6\\WebApplication6.csproj|c:\\users\\merab kikalia\\desktop\\webapplication6\\webapplication6\\migrations\\20260110063340_initialplayerprofiles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE885E7A-14CF-4177-BD2B-DEC094ADF5BA}|WebApplication6\\WebApplication6.csproj|solutionrelative:webapplication6\\migrations\\20260110063340_initialplayerprofiles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE885E7A-14CF-4177-BD2B-DEC094ADF5BA}|WebApplication6\\WebApplication6.csproj|c:\\users\\merab kikalia\\desktop\\webapplication6\\webapplication6\\requestdto\\registerrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE885E7A-14CF-4177-BD2B-DEC094ADF5BA}|WebApplication6\\WebApplication6.csproj|solutionrelative:webapplication6\\requestdto\\registerrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE885E7A-14CF-4177-BD2B-DEC094ADF5BA}|WebApplication6\\WebApplication6.csproj|c:\\users\\merab kikalia\\desktop\\webapplication6\\webapplication6\\requestdto\\addplayerprofilerequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE885E7A-14CF-4177-BD2B-DEC094ADF5BA}|WebApplication6\\WebApplication6.csproj|solutionrelative:webapplication6\\requestdto\\addplayerprofilerequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE885E7A-14CF-4177-BD2B-DEC094ADF5BA}|WebApplication6\\WebApplication6.csproj|c:\\users\\merab kikalia\\desktop\\webapplication6\\webapplication6\\migrations\\20260110070809_addnewstable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE885E7A-14CF-4177-BD2B-DEC094ADF5BA}|WebApplication6\\WebApplication6.csproj|solutionrelative:webapplication6\\migrations\\20260110070809_addnewstable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE885E7A-14CF-4177-BD2B-DEC094ADF5BA}|WebApplication6\\WebApplication6.csproj|c:\\users\\merab kikalia\\desktop\\webapplication6\\webapplication6\\migrations\\20260110064951_users.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE885E7A-14CF-4177-BD2B-DEC094ADF5BA}|WebApplication6\\WebApplication6.csproj|solutionrelative:webapplication6\\migrations\\20260110064951_users.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EmailService.cs",
+              "DocumentMoniker": "C:\\Users\\Merab Kikalia\\Desktop\\WebApplication6\\WebApplication6\\Helpers\\EmailService.cs",
+              "RelativeDocumentMoniker": "WebApplication6\\Helpers\\EmailService.cs",
+              "ToolTip": "C:\\Users\\Merab Kikalia\\Desktop\\WebApplication6\\WebApplication6\\Helpers\\EmailService.cs",
+              "RelativeToolTip": "WebApplication6\\Helpers\\EmailService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-10T07:45:08.167Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UserRegisterRequest.cs",
+              "DocumentMoniker": "C:\\Users\\Merab Kikalia\\Desktop\\WebApplication6\\WebApplication6\\RequestDTO\\UserRegisterRequest.cs",
+              "RelativeDocumentMoniker": "WebApplication6\\RequestDTO\\UserRegisterRequest.cs",
+              "ToolTip": "C:\\Users\\Merab Kikalia\\Desktop\\WebApplication6\\WebApplication6\\RequestDTO\\UserRegisterRequest.cs",
+              "RelativeToolTip": "WebApplication6\\RequestDTO\\UserRegisterRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-10T07:40:34.055Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\Merab Kikalia\\Desktop\\WebApplication6\\WebApplication6\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "WebApplication6\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\Merab Kikalia\\Desktop\\WebApplication6\\WebApplication6\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "WebApplication6\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAmwDIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-10T06:38:09.996Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ResetPasswordRequest.cs",
+              "DocumentMoniker": "C:\\Users\\Merab Kikalia\\Desktop\\WebApplication6\\WebApplication6\\RequestDTO\\ResetPasswordRequest.cs",
+              "RelativeDocumentMoniker": "WebApplication6\\RequestDTO\\ResetPasswordRequest.cs",
+              "ToolTip": "C:\\Users\\Merab Kikalia\\Desktop\\WebApplication6\\WebApplication6\\RequestDTO\\ResetPasswordRequest.cs",
+              "RelativeToolTip": "WebApplication6\\RequestDTO\\ResetPasswordRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-10T07:39:28.298Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "IUserService.cs",
+              "DocumentMoniker": "C:\\Users\\Merab Kikalia\\Desktop\\WebApplication6\\WebApplication6\\Interfaces\\IUserService.cs",
+              "RelativeDocumentMoniker": "WebApplication6\\Interfaces\\IUserService.cs",
+              "ToolTip": "C:\\Users\\Merab Kikalia\\Desktop\\WebApplication6\\WebApplication6\\Interfaces\\IUserService.cs",
+              "RelativeToolTip": "WebApplication6\\Interfaces\\IUserService.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAUwDQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-10T07:32:11.189Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PlayerProfilesController.cs",
+              "DocumentMoniker": "C:\\Users\\Merab Kikalia\\Desktop\\WebApplication6\\WebApplication6\\Controllers\\PlayerProfilesController.cs",
+              "RelativeDocumentMoniker": "WebApplication6\\Controllers\\PlayerProfilesController.cs",
+              "ToolTip": "C:\\Users\\Merab Kikalia\\Desktop\\WebApplication6\\WebApplication6\\Controllers\\PlayerProfilesController.cs",
+              "RelativeToolTip": "WebApplication6\\Controllers\\PlayerProfilesController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-10T06:30:55.483Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Merab Kikalia\\Desktop\\WebApplication6\\WebApplication6\\Program.cs",
+              "RelativeDocumentMoniker": "WebApplication6\\Program.cs",
+              "ToolTip": "C:\\Users\\Merab Kikalia\\Desktop\\WebApplication6\\WebApplication6\\Program.cs",
+              "RelativeToolTip": "WebApplication6\\Program.cs",
+              "ViewState": "AgIAAEgAAAAAAAAAAAAAAFAAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-10T06:19:54.8Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "20260110070809_AddNewsTable.cs",
+              "DocumentMoniker": "C:\\Users\\Merab Kikalia\\Desktop\\WebApplication6\\WebApplication6\\Migrations\\20260110070809_AddNewsTable.cs",
+              "RelativeDocumentMoniker": "WebApplication6\\Migrations\\20260110070809_AddNewsTable.cs",
+              "ToolTip": "C:\\Users\\Merab Kikalia\\Desktop\\WebApplication6\\WebApplication6\\Migrations\\20260110070809_AddNewsTable.cs",
+              "RelativeToolTip": "WebApplication6\\Migrations\\20260110070809_AddNewsTable.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-10T07:08:09.266Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Merab Kikalia\\Desktop\\WebApplication6\\WebApplication6\\appsettings.json",
+              "RelativeDocumentMoniker": "WebApplication6\\appsettings.json",
+              "ToolTip": "C:\\Users\\Merab Kikalia\\Desktop\\WebApplication6\\WebApplication6\\appsettings.json",
+              "RelativeToolTip": "WebApplication6\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-01-10T06:41:55.5Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\Merab Kikalia\\Desktop\\WebApplication6\\WebApplication6\\Models\\User.cs",
+              "RelativeDocumentMoniker": "WebApplication6\\Models\\User.cs",
+              "ToolTip": "C:\\Users\\Merab Kikalia\\Desktop\\WebApplication6\\WebApplication6\\Models\\User.cs",
+              "RelativeToolTip": "WebApplication6\\Models\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-10T06:36:20.422Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "PlayerProfile.cs",
+              "DocumentMoniker": "C:\\Users\\Merab Kikalia\\Desktop\\WebApplication6\\WebApplication6\\Models\\PlayerProfile.cs",
+              "RelativeDocumentMoniker": "WebApplication6\\Models\\PlayerProfile.cs",
+              "ToolTip": "C:\\Users\\Merab Kikalia\\Desktop\\WebApplication6\\WebApplication6\\Models\\PlayerProfile.cs",
+              "RelativeToolTip": "WebApplication6\\Models\\PlayerProfile.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAowAAAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-10T06:27:40.407Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "NewsController.cs",
+              "DocumentMoniker": "C:\\Users\\Merab Kikalia\\Desktop\\WebApplication6\\WebApplication6\\Controllers\\NewsController.cs",
+              "RelativeDocumentMoniker": "WebApplication6\\Controllers\\NewsController.cs",
+              "ToolTip": "C:\\Users\\Merab Kikalia\\Desktop\\WebApplication6\\WebApplication6\\Controllers\\NewsController.cs",
+              "RelativeToolTip": "WebApplication6\\Controllers\\NewsController.cs",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAcwFEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-10T07:04:43.045Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "News.cs",
+              "DocumentMoniker": "C:\\Users\\Merab Kikalia\\Desktop\\WebApplication6\\WebApplication6\\Models\\News.cs",
+              "RelativeDocumentMoniker": "WebApplication6\\Models\\News.cs",
+              "ToolTip": "C:\\Users\\Merab Kikalia\\Desktop\\WebApplication6\\WebApplication6\\Models\\News.cs",
+              "RelativeToolTip": "WebApplication6\\Models\\News.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-10T07:02:23.469Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "20260110064951_users.cs",
+              "DocumentMoniker": "C:\\Users\\Merab Kikalia\\Desktop\\WebApplication6\\WebApplication6\\Migrations\\20260110064951_users.cs",
+              "RelativeDocumentMoniker": "WebApplication6\\Migrations\\20260110064951_users.cs",
+              "ToolTip": "C:\\Users\\Merab Kikalia\\Desktop\\WebApplication6\\WebApplication6\\Migrations\\20260110064951_users.cs",
+              "RelativeToolTip": "WebApplication6\\Migrations\\20260110064951_users.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-10T06:49:51.773Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Merab Kikalia\\Desktop\\WebApplication6\\WebApplication6\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "WebApplication6\\Data\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\Merab Kikalia\\Desktop\\WebApplication6\\WebApplication6\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "WebApplication6\\Data\\AppDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-10T06:26:06.762Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "WebApplication6.csproj",
+              "DocumentMoniker": "C:\\Users\\Merab Kikalia\\Desktop\\WebApplication6\\WebApplication6\\WebApplication6.csproj",
+              "RelativeDocumentMoniker": "WebApplication6\\WebApplication6.csproj",
+              "ToolTip": "C:\\Users\\Merab Kikalia\\Desktop\\WebApplication6\\WebApplication6\\WebApplication6.csproj",
+              "RelativeToolTip": "WebApplication6\\WebApplication6.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-01-10T06:21:03.828Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "RegisterRequest.cs",
+              "DocumentMoniker": "C:\\Users\\Merab Kikalia\\Desktop\\WebApplication6\\WebApplication6\\RequestDTO\\RegisterRequest.cs",
+              "RelativeDocumentMoniker": "WebApplication6\\RequestDTO\\RegisterRequest.cs",
+              "ToolTip": "C:\\Users\\Merab Kikalia\\Desktop\\WebApplication6\\WebApplication6\\RequestDTO\\RegisterRequest.cs",
+              "RelativeToolTip": "WebApplication6\\RequestDTO\\RegisterRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-10T06:36:54.781Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "20260110063340_InitialPlayerProfiles.cs",
+              "DocumentMoniker": "C:\\Users\\Merab Kikalia\\Desktop\\WebApplication6\\WebApplication6\\Migrations\\20260110063340_InitialPlayerProfiles.cs",
+              "RelativeDocumentMoniker": "WebApplication6\\Migrations\\20260110063340_InitialPlayerProfiles.cs",
+              "ToolTip": "C:\\Users\\Merab Kikalia\\Desktop\\WebApplication6\\WebApplication6\\Migrations\\20260110063340_InitialPlayerProfiles.cs",
+              "RelativeToolTip": "WebApplication6\\Migrations\\20260110063340_InitialPlayerProfiles.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAQwC0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-10T06:33:40.412Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "AddPlayerProfileRequest.cs",
+              "DocumentMoniker": "C:\\Users\\Merab Kikalia\\Desktop\\WebApplication6\\WebApplication6\\RequestDTO\\AddPlayerProfileRequest.cs",
+              "RelativeDocumentMoniker": "WebApplication6\\RequestDTO\\AddPlayerProfileRequest.cs",
+              "ToolTip": "C:\\Users\\Merab Kikalia\\Desktop\\WebApplication6\\WebApplication6\\RequestDTO\\AddPlayerProfileRequest.cs",
+              "RelativeToolTip": "WebApplication6\\RequestDTO\\AddPlayerProfileRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-10T06:29:00.961Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
