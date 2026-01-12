@@ -1,11 +1,88 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Npgsql;
 using System.Text;
 using WebApplication6.Data;
 using WebApplication6.Models;
 
 var builder = WebApplication.CreateBuilder(args);
+
+static string NormalizePostgresConnectionString(string raw)
+{
+    if (string.IsNullOrWhiteSpace(raw))
+        return raw;
+
+    raw = raw.Trim();
+
+    // Strip surrounding quotes if present (common when copy-pasting)
+    if (raw.Length >= 2 && ((raw.StartsWith('"') && raw.EndsWith('"')) || (raw.StartsWith('\'') && raw.EndsWith('\''))))
+        raw = raw[1..^1].Trim();
+
+    // Convert URL style (postgresql://user:pass@host:port/db?sslmode=require) to Npgsql key/value style
+    if (raw.StartsWith("postgres://", StringComparison.OrdinalIgnoreCase) ||
+        raw.StartsWith("postgresql://", StringComparison.OrdinalIgnoreCase))
+    {
+        var uri = new Uri(raw);
+
+        var username = string.Empty;
+        var password = string.Empty;
+        if (!string.IsNullOrWhiteSpace(uri.UserInfo))
+        {
+            var parts = uri.UserInfo.Split(':', 2);
+            username = Uri.UnescapeDataString(parts[0]);
+            if (parts.Length > 1)
+                password = Uri.UnescapeDataString(parts[1]);
+        }
+
+        var database = uri.AbsolutePath.TrimStart('/');
+
+        var csb = new NpgsqlConnectionStringBuilder
+        {
+            Host = uri.Host,
+            Port = uri.IsDefaultPort ? 5432 : uri.Port,
+            Database = database,
+            Username = username,
+            Password = password,
+            SslMode = SslMode.Require,
+            TrustServerCertificate = true,
+        };
+
+        // Prefer IPv4 when the driver supports it (helps in environments without IPv6 routes)
+        var preferIpv4Prop = typeof(NpgsqlConnectionStringBuilder).GetProperty("PreferIPv4");
+        if (preferIpv4Prop?.CanWrite == true && preferIpv4Prop.PropertyType == typeof(bool))
+            preferIpv4Prop.SetValue(csb, true);
+
+        // Parse a couple of common query params (ignore unknowns like channel_binding)
+        var query = uri.Query;
+        if (!string.IsNullOrWhiteSpace(query))
+        {
+            if (query.StartsWith("?", StringComparison.Ordinal))
+                query = query[1..];
+
+            foreach (var pair in query.Split('&', StringSplitOptions.RemoveEmptyEntries))
+            {
+                var kv = pair.Split('=', 2);
+                var key = Uri.UnescapeDataString(kv[0]).Trim();
+                var value = kv.Length > 1 ? Uri.UnescapeDataString(kv[1]).Trim() : string.Empty;
+
+                if (key.Equals("sslmode", StringComparison.OrdinalIgnoreCase))
+                {
+                    if (value.Equals("disable", StringComparison.OrdinalIgnoreCase)) csb.SslMode = SslMode.Disable;
+                    else if (value.Equals("prefer", StringComparison.OrdinalIgnoreCase)) csb.SslMode = SslMode.Prefer;
+                    else if (value.Equals("allow", StringComparison.OrdinalIgnoreCase)) csb.SslMode = SslMode.Allow;
+                    else if (value.Equals("require", StringComparison.OrdinalIgnoreCase)) csb.SslMode = SslMode.Require;
+                    else if (value.Equals("verify-ca", StringComparison.OrdinalIgnoreCase)) csb.SslMode = SslMode.VerifyCA;
+                    else if (value.Equals("verify-full", StringComparison.OrdinalIgnoreCase)) csb.SslMode = SslMode.VerifyFull;
+                }
+            }
+        }
+
+        return csb.ConnectionString;
+    }
+
+    return raw;
+}
 
 // ✅ Hosting port (PaaS)
 // Some hosts provide a PORT env var. Bind Kestrel to it if present.
@@ -35,7 +112,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         if (string.IsNullOrWhiteSpace(postgresConn))
             throw new InvalidOperationException("Missing configuration: ConnectionStrings:PostgresConnection");
 
-        options.UseNpgsql(postgresConn);
+        options.UseNpgsql(NormalizePostgresConnectionString(postgresConn));
     }
     else
     {
@@ -169,6 +246,9 @@ app.MapControllers();
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+
+    Console.WriteLine($"[DB] Config Database:Provider = '{dbProvider}'. EF provider = '{db.Database.ProviderName}'.");
+
     if (string.Equals(dbProvider, "SqlServer", StringComparison.OrdinalIgnoreCase))
     {
         db.Database.Migrate();
