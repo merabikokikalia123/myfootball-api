@@ -45,6 +45,13 @@ static string NormalizePostgresConnectionString(string raw)
             TrustServerCertificate = true,
         };
 
+        // Some environments (and some Postgres hosts) advertise IPv6 first.
+        // If the runtime has no IPv6 route, connections can fail with "Network is unreachable".
+        // Prefer IPv4 when the driver supports it.
+        var preferIpv4Prop = typeof(NpgsqlConnectionStringBuilder).GetProperty("PreferIPv4");
+        if (preferIpv4Prop?.CanWrite == true && preferIpv4Prop.PropertyType == typeof(bool))
+            preferIpv4Prop.SetValue(csb, true);
+
         // Parse query string options like ?sslmode=require&pooling=true
         var query = uri.Query;
         if (!string.IsNullOrWhiteSpace(query))
