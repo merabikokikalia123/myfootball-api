@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Npgsql;
+using System.Net;
+using System.Net.Sockets;
 using System.Text;
 using WebApplication6.Data;
 using WebApplication6.Models;
@@ -16,6 +18,36 @@ static string NormalizePostgresConnectionString(string raw)
     raw = raw.Trim();
     if (raw.Length >= 2 && ((raw.StartsWith('"') && raw.EndsWith('"')) || (raw.StartsWith('\'') && raw.EndsWith('\''))))
         raw = raw[1..^1].Trim();
+
+    static void PreferIpv4IfPossible(NpgsqlConnectionStringBuilder csb)
+    {
+        try
+        {
+            // If the configured host resolves to IPv6 first, some environments (including some PaaS)
+            // can fail with "Network is unreachable" because they don't have IPv6 routing.
+            // Try to pin to an IPv4 address if available.
+            var host = csb.Host;
+            if (string.IsNullOrWhiteSpace(host))
+                return;
+
+            // Host may be a comma-separated list.
+            var firstHost = host.Split(',', 2)[0].Trim();
+            if (IPAddress.TryParse(firstHost, out _))
+                return;
+
+            var addresses = Dns.GetHostAddresses(firstHost);
+            var ipv4 = addresses.FirstOrDefault(a => a.AddressFamily == AddressFamily.InterNetwork);
+            if (ipv4 != null)
+            {
+                Console.WriteLine($"[DB] Postgres host '{firstHost}' resolved; pinning IPv4 {ipv4}.");
+                csb.Host = ipv4.ToString();
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"[DB] Postgres IPv4 preference failed: {ex.GetType().Name}: {ex.Message}");
+        }
+    }
 
     if (raw.StartsWith("postgres://", StringComparison.OrdinalIgnoreCase) ||
         raw.StartsWith("postgresql://", StringComparison.OrdinalIgnoreCase))
@@ -45,12 +77,7 @@ static string NormalizePostgresConnectionString(string raw)
             TrustServerCertificate = true,
         };
 
-        // Some environments (and some Postgres hosts) advertise IPv6 first.
-        // If the runtime has no IPv6 route, connections can fail with "Network is unreachable".
-        // Prefer IPv4 when the driver supports it.
-        var preferIpv4Prop = typeof(NpgsqlConnectionStringBuilder).GetProperty("PreferIPv4");
-        if (preferIpv4Prop?.CanWrite == true && preferIpv4Prop.PropertyType == typeof(bool))
-            preferIpv4Prop.SetValue(csb, true);
+        PreferIpv4IfPossible(csb);
 
         // Parse query string options like ?sslmode=require&pooling=true
         var query = uri.Query;
@@ -89,7 +116,17 @@ static string NormalizePostgresConnectionString(string raw)
         return csb.ConnectionString;
     }
 
-    return raw;
+    // Also support key/value Npgsql connection strings (Host=...;Port=...;...).
+    try
+    {
+        var csb = new NpgsqlConnectionStringBuilder(raw);
+        PreferIpv4IfPossible(csb);
+        return csb.ConnectionString;
+    }
+    catch
+    {
+        return raw;
+    }
 }
 
 // ✅ Hosting port (PaaS)
