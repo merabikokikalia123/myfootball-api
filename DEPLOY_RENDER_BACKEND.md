@@ -8,6 +8,11 @@ If you deploy **without Postgres** on Render Free, your app will use **SQLite in
 That means data can be lost on redeploy/restart (Render’s free instances don’t guarantee persistent disk).
 Your app seeds demo data on startup, so it will still work, but treat it as **demo mode**.
 
+### If you see: SQLite Error 1: 'near "max": syntax error'
+
+That happens when EF tries to apply **SQL Server migrations** against SQLite (SQL Server uses column types like `nvarchar(max)` which SQLite doesn’t understand).
+This project is configured to use **SQLite schema creation** (not SQL Server migrations) when `Database__Provider=Sqlite`.
+
 ## How to make data persistent
 
 You need one of these:
@@ -20,7 +25,20 @@ You need one of these:
 
 2. **External database** (managed DB)
 
-- This is the normal production approach.
+- Easiest free option: **hosted Postgres** (Neon / Supabase have free tiers).
+
+### Recommended (free + persistent): Neon/Supabase Postgres
+
+1. Create a Postgres database (Neon or Supabase).
+2. Copy the connection string.
+3. In Render → your service → **Environment**, set:
+   - `Database__Provider` = `Postgres`
+   - `ConnectionStrings__PostgresConnection` = `<your full postgres connection string>`
+   - `CORS_ALLOWED_ORIGINS` = `https://myfootball.pages.dev` (plus your custom domain if any)
+   - `Jwt__Key` = long random secret (32+ bytes)
+
+Then redeploy.
+
 - If you truly want “no Postgres”, you’d need to switch the backend to a different DB provider (bigger code change).
 
 ## Render steps (Docker)
