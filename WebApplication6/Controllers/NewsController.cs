@@ -43,7 +43,7 @@ namespace WebApplication6.Controllers
         [HttpPost]
         public async Task<IActionResult> Add([FromBody] News news)
         {
-            news.CreatedAt = DateTime.Now;
+            news.CreatedAt = DateTime.UtcNow;
             _context.News.Add(news);
             await _context.SaveChangesAsync();
             return Ok(news);

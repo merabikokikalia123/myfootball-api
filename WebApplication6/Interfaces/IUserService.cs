@@ -22,7 +22,7 @@ public class UserService : IUserService
 
         // Token + ვადა
         user.PasswordResetToken = Guid.NewGuid().ToString();
-        user.PasswordResetTokenExpiration = DateTime.Now.AddHours(1);
+        user.PasswordResetTokenExpiration = DateTime.UtcNow.AddHours(1);
 
         await _context.SaveChangesAsync();
 
@@ -37,7 +37,7 @@ public class UserService : IUserService
     {
         var user = _context.Users.FirstOrDefault(u =>
             u.PasswordResetToken == token &&
-            u.PasswordResetTokenExpiration > DateTime.Now
+            u.PasswordResetTokenExpiration > DateTime.UtcNow
         );
 
         if (user == null) return false;

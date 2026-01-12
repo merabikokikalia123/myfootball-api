@@ -282,10 +282,10 @@ using (var scope = app.Services.CreateScope())
     if (!db.News.Any())
     {
         db.News.AddRange(
-            new News { Title = "Football: Welcome", Content = "Sample football news from backend.", Category = "football", CreatedAt = DateTime.Now },
-            new News { Title = "Judo: Welcome", Content = "Sample judo news from backend.", Category = "judo", CreatedAt = DateTime.Now },
-            new News { Title = "Basketball: Welcome", Content = "Sample basketball news from backend.", Category = "basketball", CreatedAt = DateTime.Now },
-            new News { Title = "MMA: Welcome", Content = "Sample MMA news from backend.", Category = "mma", CreatedAt = DateTime.Now }
+            new News { Title = "Football: Welcome", Content = "Sample football news from backend.", Category = "football", CreatedAt = DateTime.UtcNow },
+            new News { Title = "Judo: Welcome", Content = "Sample judo news from backend.", Category = "judo", CreatedAt = DateTime.UtcNow },
+            new News { Title = "Basketball: Welcome", Content = "Sample basketball news from backend.", Category = "basketball", CreatedAt = DateTime.UtcNow },
+            new News { Title = "MMA: Welcome", Content = "Sample MMA news from backend.", Category = "mma", CreatedAt = DateTime.UtcNow }
         );
         db.SaveChanges();
     }
