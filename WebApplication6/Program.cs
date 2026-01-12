@@ -1,133 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using Npgsql;
-using System.Net;
-using System.Net.Sockets;
 using System.Text;
 using WebApplication6.Data;
 using WebApplication6.Models;
 
 var builder = WebApplication.CreateBuilder(args);
-
-static string NormalizePostgresConnectionString(string raw)
-{
-    if (string.IsNullOrWhiteSpace(raw))
-        return raw;
-
-    raw = raw.Trim();
-    if (raw.Length >= 2 && ((raw.StartsWith('"') && raw.EndsWith('"')) || (raw.StartsWith('\'') && raw.EndsWith('\''))))
-        raw = raw[1..^1].Trim();
-
-    static void PreferIpv4IfPossible(NpgsqlConnectionStringBuilder csb)
-    {
-        try
-        {
-            // If the configured host resolves to IPv6 first, some environments (including some PaaS)
-            // can fail with "Network is unreachable" because they don't have IPv6 routing.
-            // Try to pin to an IPv4 address if available.
-            var host = csb.Host;
-            if (string.IsNullOrWhiteSpace(host))
-                return;
-
-            // Host may be a comma-separated list.
-            var firstHost = host.Split(',', 2)[0].Trim();
-            if (IPAddress.TryParse(firstHost, out _))
-                return;
-
-            var addresses = Dns.GetHostAddresses(firstHost);
-            var ipv4 = addresses.FirstOrDefault(a => a.AddressFamily == AddressFamily.InterNetwork);
-            if (ipv4 != null)
-            {
-                Console.WriteLine($"[DB] Postgres host '{firstHost}' resolved; pinning IPv4 {ipv4}.");
-                csb.Host = ipv4.ToString();
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"[DB] Postgres IPv4 preference failed: {ex.GetType().Name}: {ex.Message}");
-        }
-    }
-
-    if (raw.StartsWith("postgres://", StringComparison.OrdinalIgnoreCase) ||
-        raw.StartsWith("postgresql://", StringComparison.OrdinalIgnoreCase))
-    {
-        var uri = new Uri(raw);
-
-        var username = string.Empty;
-        var password = string.Empty;
-        if (!string.IsNullOrWhiteSpace(uri.UserInfo))
-        {
-            var parts = uri.UserInfo.Split(':', 2);
-            username = Uri.UnescapeDataString(parts[0]);
-            if (parts.Length > 1)
-                password = Uri.UnescapeDataString(parts[1]);
-        }
-
-        var database = uri.AbsolutePath.TrimStart('/');
-
-        var csb = new NpgsqlConnectionStringBuilder
-        {
-            Host = uri.Host,
-            Port = uri.IsDefaultPort ? 5432 : uri.Port,
-            Database = database,
-            Username = username,
-            Password = password,
-            SslMode = SslMode.Require,
-            TrustServerCertificate = true,
-        };
-
-        PreferIpv4IfPossible(csb);
-
-        // Parse query string options like ?sslmode=require&pooling=true
-        var query = uri.Query;
-        if (!string.IsNullOrWhiteSpace(query))
-        {
-            if (query.StartsWith("?", StringComparison.Ordinal))
-                query = query[1..];
-
-            foreach (var pair in query.Split('&', StringSplitOptions.RemoveEmptyEntries))
-            {
-                var kv = pair.Split('=', 2);
-                var key = Uri.UnescapeDataString(kv[0]).Trim();
-                var value = kv.Length > 1 ? Uri.UnescapeDataString(kv[1]).Trim() : string.Empty;
-
-                if (key.Equals("sslmode", StringComparison.OrdinalIgnoreCase))
-                {
-                    if (value.Equals("disable", StringComparison.OrdinalIgnoreCase)) csb.SslMode = SslMode.Disable;
-                    else if (value.Equals("prefer", StringComparison.OrdinalIgnoreCase)) csb.SslMode = SslMode.Prefer;
-                    else if (value.Equals("allow", StringComparison.OrdinalIgnoreCase)) csb.SslMode = SslMode.Allow;
-                    else if (value.Equals("require", StringComparison.OrdinalIgnoreCase)) csb.SslMode = SslMode.Require;
-                    else if (value.Equals("verify-ca", StringComparison.OrdinalIgnoreCase)) csb.SslMode = SslMode.VerifyCA;
-                    else if (value.Equals("verify-full", StringComparison.OrdinalIgnoreCase)) csb.SslMode = SslMode.VerifyFull;
-                }
-                else if (key.Equals("trust server certificate", StringComparison.OrdinalIgnoreCase) ||
-                         key.Equals("trustservercertificate", StringComparison.OrdinalIgnoreCase))
-                {
-                    if (bool.TryParse(value, out var b)) csb.TrustServerCertificate = b;
-                }
-                else if (key.Equals("pooling", StringComparison.OrdinalIgnoreCase))
-                {
-                    if (bool.TryParse(value, out var b)) csb.Pooling = b;
-                }
-            }
-        }
-
-        return csb.ConnectionString;
-    }
-
-    // Also support key/value Npgsql connection strings (Host=...;Port=...;...).
-    try
-    {
-        var csb = new NpgsqlConnectionStringBuilder(raw);
-        PreferIpv4IfPossible(csb);
-        return csb.ConnectionString;
-    }
-    catch
-    {
-        return raw;
-    }
-}
 
 // ✅ Hosting port (PaaS)
 // Some hosts provide a PORT env var. Bind Kestrel to it if present.
@@ -157,7 +35,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         if (string.IsNullOrWhiteSpace(postgresConn))
             throw new InvalidOperationException("Missing configuration: ConnectionStrings:PostgresConnection");
 
-        options.UseNpgsql(NormalizePostgresConnectionString(postgresConn));
+        options.UseNpgsql(postgresConn);
     }
     else
     {
@@ -287,13 +165,10 @@ app.MapControllers();
 // ✅ Initialize DB
 // NOTE: The existing EF migrations in this repo were generated for SQL Server and include SQL Server-specific
 // column types like nvarchar(max). Applying them to SQLite will fail ("near 'max': syntax error").
-// For SQLite and Postgres, create the schema directly.
+// For SQLite, create the schema directly.
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-
-    Console.WriteLine($"[DB] Config Database:Provider = '{dbProvider}'. EF provider = '{db.Database.ProviderName}'.");
-
     if (string.Equals(dbProvider, "SqlServer", StringComparison.OrdinalIgnoreCase))
     {
         db.Database.Migrate();
