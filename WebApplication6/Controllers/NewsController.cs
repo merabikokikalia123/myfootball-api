@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApplication6.Data;
@@ -11,13 +11,15 @@ namespace WebApplication6.Controllers
     public class NewsController : ControllerBase
     {
         private readonly AppDbContext _context;
+        private readonly IWebHostEnvironment _env;
 
-        public NewsController(AppDbContext context)
+        public NewsController(AppDbContext context, IWebHostEnvironment env)
         {
             _context = context;
+            _env = env;
         }
 
-        // ✅ GET all news (ყველას შეუძლია)
+        // ✅ GET all news
         [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> GetAll()
@@ -28,7 +30,7 @@ namespace WebApplication6.Controllers
             return Ok(newsList);
         }
 
-        // ✅ GET single news (ყველას შეუძლია)
+        // ✅ GET single news
         [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
@@ -38,21 +40,36 @@ namespace WebApplication6.Controllers
             return Ok(news);
         }
 
-        // ✅ POST news (Admin / Premium)
+        // ✅ POST news with optional image
         [Authorize(Roles = "Admin,Premium")]
         [HttpPost]
-        public async Task<IActionResult> Add([FromBody] News news)
+        public async Task<IActionResult> Add([FromForm] News news, IFormFile? image)
         {
+            if (image != null && image.Length > 0)
+            {
+                var imagesFolder = Path.Combine(_env.WebRootPath, "images");
+                if (!Directory.Exists(imagesFolder))
+                    Directory.CreateDirectory(imagesFolder);
+
+                var fileName = $"{Guid.NewGuid()}_{image.FileName}";
+                var filePath = Path.Combine(imagesFolder, fileName);
+
+                using var stream = new FileStream(filePath, FileMode.Create);
+                await image.CopyToAsync(stream);
+
+                news.ImageUrl = "/images/" + fileName; // URL ფაილისთვის
+            }
+
             news.CreatedAt = DateTime.UtcNow;
             _context.News.Add(news);
             await _context.SaveChangesAsync();
             return Ok(news);
         }
 
-        // ✅ PUT news (Admin / Premium)
+        // ✅ PUT news with optional image update
         [Authorize(Roles = "Admin,Premium")]
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] News updatedNews)
+        public async Task<IActionResult> Update(int id, [FromForm] News updatedNews, IFormFile? image)
         {
             var news = await _context.News.FindAsync(id);
             if (news == null) return NotFound();
@@ -61,11 +78,26 @@ namespace WebApplication6.Controllers
             news.Content = updatedNews.Content;
             news.Category = updatedNews.Category;
 
+            if (image != null && image.Length > 0)
+            {
+                var imagesFolder = Path.Combine(_env.WebRootPath, "images");
+                if (!Directory.Exists(imagesFolder))
+                    Directory.CreateDirectory(imagesFolder);
+
+                var fileName = $"{Guid.NewGuid()}_{image.FileName}";
+                var filePath = Path.Combine(imagesFolder, fileName);
+
+                using var stream = new FileStream(filePath, FileMode.Create);
+                await image.CopyToAsync(stream);
+
+                news.ImageUrl = "/images/" + fileName;
+            }
+
             await _context.SaveChangesAsync();
             return Ok(news);
         }
 
-        // ✅ DELETE news (Admin only)
+        // ✅ DELETE news
         [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
