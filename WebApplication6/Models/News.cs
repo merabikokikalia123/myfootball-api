@@ -6,6 +6,6 @@ public class News
     public string Content { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public string Category { get; set; }   // მაგალითად: "Football", "Judo", "Basketball", "MMA"
-
+ public string ImageUrl { get; set; }
 }
 
