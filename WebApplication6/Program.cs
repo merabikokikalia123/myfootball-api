@@ -8,6 +8,8 @@ using WebApplication6.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var allowCredentials = builder.Configuration.GetValue<bool>("Cors:AllowCredentials");
+
 static string NormalizePostgresConnectionString(string raw)
 {
     if (string.IsNullOrWhiteSpace(raw))
@@ -210,6 +212,9 @@ builder.Services.AddCors(options =>
         else
         {
             policy.WithOrigins(allowedOrigins.ToArray());
+              // Only valid when specific origins are configured (not with '*').
+            if (allowCredentials)
+                policy.AllowCredentials();
         }
 
         policy
