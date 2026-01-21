@@ -203,6 +203,11 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AppCors", policy =>
     {
+          policy
+                .AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+            return;
         if (allowedOrigins.Count == 0)
         {
             // If no origins are configured, fall back to permissive behavior.
