@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Npgsql;
@@ -7,8 +7,6 @@ using WebApplication6.Data;
 using WebApplication6.Models;
 
 var builder = WebApplication.CreateBuilder(args);
-
-var allowCredentials = builder.Configuration.GetValue<bool>("Cors:AllowCredentials");
 
 static string NormalizePostgresConnectionString(string raw)
 {
@@ -173,6 +171,14 @@ builder.Services.AddControllers();
 //   or appsettings: Cors:AllowedOrigins
 var allowedOrigins = new List<string>();
 
+var allowCredentials = builder.Configuration.GetValue<bool>("Cors:AllowCredentials");
+
+// Read from appsettings first, then merge in env var. This avoids a production env var
+// accidentally overriding and dropping configured origins.
+var configAllowedOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>();
+if (configAllowedOrigins is { Length: > 0 })
+    allowedOrigins.AddRange(configAllowedOrigins);
+
 var envAllowedOrigins = builder.Configuration["CORS_ALLOWED_ORIGINS"];
 if (!string.IsNullOrWhiteSpace(envAllowedOrigins))
 {
@@ -180,12 +186,6 @@ if (!string.IsNullOrWhiteSpace(envAllowedOrigins))
         envAllowedOrigins
             .Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
     );
-}
-else
-{
-    var configAllowedOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>();
-    if (configAllowedOrigins is { Length: > 0 })
-        allowedOrigins.AddRange(configAllowedOrigins);
 }
 
 if (builder.Environment.IsDevelopment())
@@ -205,21 +205,27 @@ builder.Services.AddCors(options =>
     {
         if (allowedOrigins.Count == 0)
         {
-            // Fallback to permissive CORS to prevent accidental lockouts.
-            // Tighten this in production by setting CORS_ALLOWED_ORIGINS.
-            policy.AllowAnyOrigin();
+            // If no origins are configured, fall back to permissive behavior.
+            // NOTE: When credentials are enabled, we cannot use "*".
+            if (allowCredentials)
+            {
+                policy
+                    .SetIsOriginAllowed(_ => true)
+                    .AllowCredentials();
+            }
+            else
+            {
+                policy.AllowAnyOrigin();
+            }
         }
         else
         {
             policy.WithOrigins(allowedOrigins.ToArray());
-              // Only valid when specific origins are configured (not with '*').
             if (allowCredentials)
                 policy.AllowCredentials();
         }
 
-        policy
-            .AllowAnyHeader()
-            .AllowAnyMethod();
+        policy.AllowAnyHeader().AllowAnyMethod();
     });
 });
 
@@ -242,7 +248,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 // ✅ Map controllers
-app.MapControllers();
+app.MapControllers().RequireCors("AppCors");
 
 // ✅ Initialize DB
 // NOTE: The existing EF migrations in this repo were generated for SQL Server and include SQL Server-specific
